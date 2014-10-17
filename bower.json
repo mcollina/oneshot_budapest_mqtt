@@ -1,0 +1,7 @@
+{
+  "name": "presentation-live-code-the-internet-of-things",
+  "version": "0.0.0",
+  "dependencies": {
+    "prism": "gh-pages"
+  }
+}
