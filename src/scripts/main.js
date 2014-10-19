@@ -10,22 +10,30 @@ var bespoke = require('bespoke'),
   progress = require('bespoke-progress'),
   run = require('bespoke-run'),
   camera = require('bespoke-camera'),
-  forms = require('bespoke-forms');
+  forms = require('bespoke-forms')
+  sensortag = require('./sensortag'),
+  mqtt = require('mows'),
+  config = require('../../config'),
+  client = mqtt.createClient(config.brokerWS);
 
+
+global.mqtt = mqtt;
+global.mqttBroker = config.brokerWS;
 
 // Bespoke.js
 bespoke.from('article', [
   classes(),
   keys(),
   touch(),
+  run(),
+  sensortag(client),
+  camera(),
   bullets('li, .bullet'),
   backdrop(),
   scale(),
   hash(),
   progress(),
-  forms(),
-  run(),
-  camera()
+  forms()
 ]);
 
 // Prism syntax highlighting

@@ -8,7 +8,8 @@ var debug = require('debug')('blue')
   , press = require('mac-key-press').press
   , leftKey = 123
   , rightKey = 124
-  , client = require('mqtt').createClient()
+  , config = require('./config')
+  , client = require('mqtt').connect(config.brokerMQTT)
 
 debug('searching for a sensor tag')
 

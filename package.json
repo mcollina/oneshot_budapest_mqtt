@@ -5,6 +5,7 @@
     "bespoke-camera": "^1.0.0",
     "bespoke-classes": "^1.0.0",
     "bespoke-run": "^1.0.1",
+    "debug": "^2.1.0",
     "mac-key-press": "^0.1.0",
     "mows": "0.0.6",
     "mqtt": "^0.3.12",

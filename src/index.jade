@@ -60,9 +60,9 @@ html
         h2 Controlling an LCD
         pre
           code(data-bespoke-autorun).language-javascript.
-            var client = mqtt.createClient();
+            var client = mqtt.createClient(mqttBroker);
 
-            client.publish("yun/lcd", "Hello LXJS!");
+            client.publish("mcyun/lcd", "Hello FULLSTACK!");
 
             client.end();
 
@@ -83,12 +83,12 @@ html
         h2 Temperature on LCD?
         pre
           code(data-bespoke-autorun).language-javascript.
-            var client = mqtt.createClient();
+            var client = mqtt.createClient(mqttBroker);
 
             client.subscribe("sensortag/ir/ambient");
 
             client.on("message", function(topic, payload) {
-              client.publish('yun/temp', payload);
+              client.publish('mcyun/temp', payload);
             });
 
             setTimeout(client.end.bind(client), 3000);
@@ -99,17 +99,24 @@ html
         h2 Slide controls on LCD
         pre
           code(data-bespoke-autorun).language-javascript.
-            var client = mqtt.createClient();
+            var client = mqtt.createClient(mqttBroker);
 
             client.subscribe("deck/#");
 
             client.on("message", function(topic, payload) {
-              client.publish('yun/' + topic, payload);
+              client.publish('mcyun/' + topic, payload);
             });
 
             setTimeout(client.end.bind(client), 10000);
 
-      section(data-camera="fullscreen")
+      section(data-camera)
+        h1 1
+
+      section(data-camera)
+        h1 2
+
+      section(data-camera)
+        h1 3
 
       section(data-bespoke-state='sensortag', data-camera)
         h2 Slide control using MQTT
