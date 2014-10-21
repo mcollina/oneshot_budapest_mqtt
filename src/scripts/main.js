@@ -14,6 +14,7 @@ var bespoke = require('bespoke'),
   sensortag = require('./sensortag'),
   mqtt = require('mows'),
   config = require('../../config'),
+  video = require('./video'),
   client = mqtt.createClient(config.brokerWS);
 
 
@@ -33,6 +34,7 @@ bespoke.from('article', [
   scale(),
   hash(),
   progress(),
+  video(),
   forms()
 ]);
 
