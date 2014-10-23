@@ -12,4 +12,4 @@ var internet = {
 module.exports = local
 
 // comment to use local
-module.exports = internet
+//module.exports = internet

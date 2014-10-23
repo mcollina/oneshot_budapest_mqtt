@@ -15,6 +15,7 @@ var bespoke = require('bespoke'),
   mqtt = require('mows'),
   config = require('../../config'),
   video = require('./video'),
+  servo = require('./servo'),
   client = mqtt.createClient(config.brokerWS);
 
 
@@ -28,7 +29,8 @@ bespoke.from('article', [
   touch(),
   run(),
   sensortag(client),
-  camera(),
+  servo(client),
+  camera({ width: "320px" }),
   bullets('li, .bullet'),
   backdrop(),
   scale(),

@@ -52,7 +52,7 @@ html
       section
         h2 Building Robots?
 
-        ol
+        ol.bullet
           li change the real world!
           li sense the real world!
 
@@ -95,7 +95,17 @@ html
 
       section(data-camera="fullscreen")
 
-      section(data-camera)
+      section(data-bespoke-backdrop='sensortag').sensortag-slide
+        h2 SensorTag
+        ul.bullet
+          li Bluetooth Low Energy
+          li Works with your iPhone, Android or Laptop
+          li It has its own node.js module!
+          li works even as an iBeacon
+          li 25$ shipping included..
+          li by Texas Instruments
+
+      section(data-bespoke-backdrop='sensortag', data-camera).sensortag-slide
         h2 Slide controls on LCD
         pre
           code(data-bespoke-autorun).language-javascript.
@@ -104,41 +114,94 @@ html
             client.subscribe("deck/#");
 
             client.on("message", function(topic, payload) {
-              client.publish('mcyun/' + topic, payload);
+              topic = topic.replace("deck/", "");
+              client.publish('mcyun/deck', topic);
             });
 
             setTimeout(client.end.bind(client), 10000);
 
-      section(data-camera)
+      section(data-bespoke-backdrop='sensortag', data-camera).sensortag-slide
         h1 1
 
-      section(data-camera)
+      section(data-bespoke-backdrop='sensortag', data-camera).sensortag-slide
         h1 2
 
-      section(data-camera)
+      section(data-bespoke-backdrop='sensortag', data-camera).sensortag-slide
         h1 3
 
-      section(data-bespoke-state='sensortag', data-camera)
+      section(data-camera="fullscreen")
+
+      section(data-camera="fullscreen")
+
+      section(data-bespoke-backdrop='sensortag', data-camera).sensortag-slide
         h2 Slide control using MQTT
         ul.bullet
           li The SensorTag is connected via BLE to a node program
           li The button press events are published to topics 'deck/{next|prev}'
-          li This web app is connected via WebSocket to the MQTT broker..
-          li ..and triggers the sliding API.
+          li This web app is connected via MQTT over WebSocket to the MQTT broker..
+          li ..and triggers the sliding API when a button is pushed!
 
       section(data-camera)
         h2 Plane control over MQTT!
 
       section(data-camera="fullscreen")
 
-      section
-        video(src="images/plane.mov" loop)
+      section(data-camera).servo
+        h2 Servo Control!
+
+        p
+          a.servo-cw
+            i.fa.fa-large.fa-rotate-right
+          | &nbsp;
+          a.servo-ccw
+            i.fa.fa-large.fa-rotate-left
+          | &nbsp;
+          a.servo-stop
+            i.fa.fa-large.fa-stop
 
       section(data-camera="fullscreen")
 
       section
-        h2 Mosca
+        h2 Button!
+        pre
+          code(data-bespoke-autorun).language-javascript.
+            var client = mqtt.createClient(mqttBroker);
+
+            client.subscribe("button/press");
+
+            client.on("message", function(topic, payload) {
+              alert('pressed!')
+            });
+
+            setTimeout(client.end.bind(client), 10000);
+
+      section
+        h2 Plane Control!
+        pre
+          code(data-bespoke-autorun).language-javascript.
+            var client = mqtt.createClient(mqttBroker);
+            var rotating = false;
+            client.subscribe("button/press");
+            client.on("message", function() {
+              if (rotating = !rotating)
+                client.publish('servo/ccw', '0.5')
+              else
+                client.publish('servo/stop', 'true')
+            });
+            setTimeout(client.end.bind(client), 10000);
+
+      section(data-camera="fullscreen")
+
+      section
+        video(src="images/plane.mov" loop)
+
+      section
+        img(src="/images/mosca.png")
+        br
         h3 MQTT broker in Node.js
+
+      section
+        h2 Mosca
         ul
           li
             a(href="http://npm.im/mosca") http://npm.im/mosca

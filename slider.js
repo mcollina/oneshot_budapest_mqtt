@@ -24,12 +24,6 @@ SensorTag.discover(function(sensorTag) {
         debug('key press correctly setted up')
       })
 
-      sensorTag.enableHumidity(function() {
-        sensorTag.notifyHumidity(function() {
-          debug('humidity correctly setted up')
-        })
-      })
-
       sensorTag.enableIrTemperature(function() {
         sensorTag.notifyIrTemperature(function() {
           debug('ir temperature correctly setted up')
@@ -49,11 +43,6 @@ SensorTag.discover(function(sensorTag) {
       //press(rightKey)
       press(36) // return
     }
-  })
-
-  sensorTag.on('humidityChange', function(temperature, humidity) {
-    client.publish('sensortag/temperature', '' + temperature)
-    client.publish('sensortag/humidity', '' + humidity)
   })
 
   sensorTag.on('irTemperatureChange', function(objectTemperature, ambientTemperature) {

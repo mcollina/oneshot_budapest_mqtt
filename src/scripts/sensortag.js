@@ -30,6 +30,7 @@ function mqtt(client) {
       var elem = document.querySelector('#lcd')
       elem.onchange = function() {
         client.publish('mcyun/lcd', elem.value)
+        deck.next()
       }
     })()
 
