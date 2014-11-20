@@ -3,7 +3,7 @@ html
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
-    title Live code the Internet of Things
+    title Live code the Internet of Trees
 
     link(rel='stylesheet', type='text/css', href='build/build.css')
 
@@ -12,7 +12,9 @@ html
     article
 
       section
-        h1 Live code the Internet of Things
+        h1 Live code the Internet of&nbsp;
+          span(style="text-decoration: line-through") Things
+          | &nbsp;Trees
         h3 <a href="http://twitter.com/matteocollina">@matteocollina</a>
 
       section(data-camera)
@@ -23,16 +25,26 @@ html
 
       section(data-camera="fullscreen")
         h1 You should not see this!
+        // led pulse thing
+
+      section
+        img(src="images/tree-lights.gif", style="height: 100%")
+
+      section
+        img(src="images/tree-bears.gif", style="height: 100%")
+
+      section
+        img(src="images/tree-mices.gif", style="height: 100%")
+
+      section
+        img(src="images/tree-train.gif", style="height: 100%")
+
+      section
+        h3 Remote controlling your tree lights!
+        img(src="images/tree-frog.gif", style="height: 100%")
 
       section.full-imgs
         img(src="images/mqttorg.svg")
-
-      section(data-camera)
-        h2 Controlling an LCD
-
-        form.disabled
-          input#lcd(type="text")
-
       section(data-camera="fullscreen")
 
       section
@@ -49,12 +61,33 @@ html
         h2 Publish-Subscribe
         img(src="images/pubsub.png", style="height: 100%")
 
-      section
-        h2 Building Robots?
+      section(data-camera="fullscreen")
+        h1 You should not see this!
+        // control your tessel with MQTT
+        // johnny-five potentiometers for controlling
 
-        ol.bullet
-          li change the real world!
-          li sense the real world!
+      section(data-camera)
+        h2 Browser-based tree control system
+        pre
+          code(data-bespoke-autorun).language-javascript.
+            var client = mqtt.createClient(mqttBroker);
+            var cmd = {
+              steps: 2,
+              changeFrequency: 500
+            };
+            var msg = JSON.stringify(cmd)
+
+            client.publish("tree/matteo/start", msg);
+            client.end()
+
+      section(data-camera="fullscreen")
+        h1 You should not see this!
+
+      section(data-camera)
+        h2 Controlling an LCD
+
+        form.disabled
+          input#lcd(type="text")
 
       section(data-camera)
         h2 Controlling an LCD
@@ -62,7 +95,7 @@ html
           code(data-bespoke-autorun).language-javascript.
             var client = mqtt.createClient(mqttBroker);
 
-            client.publish("mcyun/lcd", "Hello FULLSTACK!");
+            client.publish("mcyun/lcd", "Hello Budapest!");
 
             client.end();
 
@@ -141,56 +174,6 @@ html
           li This web app is connected via MQTT over WebSocket to the MQTT broker..
           li ..and triggers the sliding API when a button is pushed!
 
-      section(data-camera)
-        h2 Plane control over MQTT!
-
-      section(data-camera="fullscreen")
-
-      section(data-camera).servo
-        h2 Servo Control!
-
-        p
-          a.servo-cw
-            i.fa.fa-large.fa-rotate-right
-          | &nbsp;
-          a.servo-ccw
-            i.fa.fa-large.fa-rotate-left
-          | &nbsp;
-          a.servo-stop
-            i.fa.fa-large.fa-stop
-
-      section(data-camera="fullscreen")
-
-      section
-        h2 Button!
-        pre
-          code(data-bespoke-autorun).language-javascript.
-            var client = mqtt.createClient(mqttBroker);
-
-            client.subscribe("button/press");
-
-            client.on("message", function(topic, payload) {
-              alert('pressed!')
-            });
-
-            setTimeout(client.end.bind(client), 10000);
-
-      section
-        h2 Plane Control!
-        pre
-          code(data-bespoke-autorun).language-javascript.
-            var client = mqtt.createClient(mqttBroker);
-            var rotating = false;
-            client.subscribe("button/press");
-            client.on("message", function() {
-              if (rotating = !rotating)
-                client.publish('servo/ccw', '0.5')
-              else
-                client.publish('servo/stop', 'true')
-            });
-            setTimeout(client.end.bind(client), 10000);
-
-      section(data-camera="fullscreen")
 
       section
         video(src="images/plane.mov" loop)
@@ -219,6 +202,9 @@ html
         img(src='images/me.png')
         h3
           a(href='http://github.com/mcollina') http://github.com/mcollina
+
+      section.full-imgs
+        img(src='images/nearform.svg')
 
       section
         h1 Thanks!
